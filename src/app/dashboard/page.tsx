@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 import DefaultLayout from "@/layout";
 
@@ -17,6 +18,13 @@ const Dashboard: React.FC = () => {
   return (
     <DefaultLayout>
       <div>Hello</div>
+      <button
+        onClick={() => {
+          signOut();
+        }}
+      >
+        logout
+      </button>
     </DefaultLayout>
   );
 };

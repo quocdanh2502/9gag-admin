@@ -24,7 +24,7 @@ export const options: NextAuthOptions = {
         };
 
         const res = await authApi.postAuthLogin({ username, password });
-
+        console.log(res);
         if (res) {
           user.name = `${res.data}`;
           // Any object returned will be saved in `user` property of the JWT
