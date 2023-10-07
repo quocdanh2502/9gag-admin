@@ -1,29 +1,24 @@
-import axios from "axios";
-import { URL_API } from "@/config/config";
+import axios from 'axios'
+import { URL_API } from '@/config/config'
+import { getCookie } from '@/utils'
 
 const axiosClient = axios.create({
   baseURL: URL_API,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
-});
+})
 
 axiosClient.interceptors.request.use(
   function (config) {
-    return config;
+    config.headers.Authorization =
+      typeof window !== 'undefined' ? `Bearer ${getCookie('token')}` : ''
+
+    return config
   },
   function (error) {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 
-axiosClient.interceptors.response.use(
-  function (response) {
-    return response.data;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
-
-export default axiosClient;
+export default axiosClient
