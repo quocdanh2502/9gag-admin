@@ -1,50 +1,63 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
-  UploadOutlined,
+  TeamOutlined,
   UserOutlined,
-  VideoCameraOutlined,
+  DashboardOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import { useAppSelector } from "@/redux/hook";
+
+import { useAppSelector } from "@/hooks/redux-toolkit";
+import { KEY_NAVBAR } from "@/config/constant";
 
 const { Sider } = Layout;
 
 const AppNavBar: React.FC = () => {
-  const collapsed = useAppSelector((state) => state.change.isOpen);
+  const router = useRouter();
+  const { key } = useAppSelector((state) => state.change);
   const mode = useAppSelector((state) => state.switch.mode);
+  const [collapsed, setCollapsed] = useState(false);
+
+  const handleNavigate = (route: string) => {
+    router.push(route);
+  };
+
+  const items = [
+    {
+      key: KEY_NAVBAR.dashboard.key,
+      icon: <DashboardOutlined style={{ fontSize: "18px" }} />,
+      label: KEY_NAVBAR.dashboard.label,
+      onClick: () => handleNavigate("/dashboard"),
+    },
+    {
+      key: KEY_NAVBAR.users.key,
+      icon: <UserOutlined style={{ fontSize: "18px" }} />,
+      label: KEY_NAVBAR.users.label,
+      onClick: () => handleNavigate("/users"),
+    },
+    {
+      key: KEY_NAVBAR.root.key,
+      icon: <TeamOutlined style={{ fontSize: "18px" }} />,
+      label: KEY_NAVBAR.root.label,
+      onClick: () => handleNavigate("/root"),
+    },
+  ];
 
   return (
     <Sider
-      trigger={null}
-      collapsedWidth="50"
+      theme={mode === "dark" ? "dark" : "light"}
       collapsible
       collapsed={collapsed}
-      theme={mode === "dark" ? "dark" : "light"}
+      onCollapse={(value) => setCollapsed(value)}
     >
       <div className="demo-logo-vertical" />
       <Menu
         theme={mode === "dark" ? "dark" : "light"}
         mode="inline"
-        defaultSelectedKeys={["1"]}
-        items={[
-          {
-            key: "1",
-            icon: <UserOutlined />,
-            label: "nav 1",
-          },
-          {
-            key: "2",
-            icon: <VideoCameraOutlined />,
-            label: "nav 2",
-          },
-          {
-            key: "3",
-            icon: <UploadOutlined />,
-            label: "nav 3",
-          },
-        ]}
+        selectedKeys={[key]}
+        items={items}
       />
     </Sider>
   );

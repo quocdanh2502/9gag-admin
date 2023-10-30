@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Layout, theme } from "antd";
 
 import AppNavBar from "./NavBar";
 import AppHeader from "./Header";
+import { useGetProfile } from "@/hooks/useAuth";
 
 const { Content } = Layout;
 
@@ -12,8 +14,17 @@ const DefaultLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const router = useRouter();
 
-  return (
+  const isAuthenticated = useGetProfile();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/");
+    }
+  }, [isAuthenticated, router]);
+
+  return isAuthenticated ? (
     <Layout>
       <AppNavBar />
       <Layout style={{ minHeight: "100vh" }}>
@@ -30,6 +41,8 @@ const DefaultLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
         </Content>
       </Layout>
     </Layout>
+  ) : (
+    <>{children}</>
   );
 };
 

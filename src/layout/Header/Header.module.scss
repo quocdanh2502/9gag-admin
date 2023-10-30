@@ -1,0 +1,41 @@
+.header {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 24;
+}
+
+.user-name {
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #232d42;
+}
+
+.role {
+  font-size: 14px;
+  line-height: 16px;
+  color: #8a92a6;
+}
+
+.icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+// Dark mdoe
+.dark-user-name {
+  color: #ffffff;
+}
+
+.dark-role {
+  color: #ffffffb2;
+}
+
+.dark-icon-color {
+  color: rgba(255, 255, 255, 0.65);
+}
+//Light mode
+.light-icon-color {
+  color: rgba(0, 0, 0, 0.88);
+}

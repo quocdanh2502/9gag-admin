@@ -6,7 +6,7 @@ interface HeaderState {
 }
 
 const initialState: HeaderState = {
-  mode: "dark",
+  mode: "light",
 };
 
 export const headerSlice = createSlice({

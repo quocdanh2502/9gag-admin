@@ -6,18 +6,18 @@ import { useAppDispatch } from "@/hooks/redux-toolkit";
 import { selectKey } from "@/redux/Slice/navBar";
 import { KEY_NAVBAR } from "@/config/constant";
 
-const Dashboard: React.FC = () => {
+const Root: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(selectKey(KEY_NAVBAR.dashboard.key));
+    dispatch(selectKey(KEY_NAVBAR.root.key));
   }, [dispatch]);
 
   return (
     <>
-      <div>User</div>
+      <div>Root</div>
     </>
   );
 };
 
-export default Dashboard;
+export default Root;

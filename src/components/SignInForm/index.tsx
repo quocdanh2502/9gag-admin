@@ -1,44 +1,56 @@
-'use client'
+"use client";
 
 //Not me
-import React, { useState } from 'react'
-import { signIn } from 'next-auth/react'
-import { Button, Checkbox, Form, Input, message, Spin } from 'antd'
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button, Checkbox, Form, Input, message, Spin } from "antd";
 
 //My file
-import styles from './Login.module.css'
-import { Auth } from '@/models/auth'
-import authApi from '@/services/api/login'
-import { setCookie } from '@/utils'
-import { useMutation } from '@/hooks/swr'
-import { useRouter } from 'next/navigation'
+import styles from "./Login.module.css";
+import { Auth } from "@/models/auth";
+import authApi from "@/services/api/signIn";
+import { setCookie } from "@/utils/cookie";
+import { useMutation } from "@/hooks/swr";
+import { useAppDispatch } from "@/hooks/redux-toolkit";
+import { changeAuthenticate } from "@/redux/Slice/authenticate";
+import { setUser } from "@/redux/Slice/user";
+import userApi from "@/services/api/user";
 
 const SignInForm: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [messageApi, contextHolder] = message.useMessage()
+  const [isLoading, setIsLoading] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  const router = useRouter()
   const login = useMutation(
-    'login',
+    "login",
     async (key, data) => {
-      const res = await authApi.postAuthLogin(data.arg as unknown as Auth)
-      setCookie('token', res.data.token, 86400 * 7)
+      setIsLoading(true);
+      const resToken = await authApi.postAuthSignIn(
+        data.arg as unknown as Auth
+      );
+      setCookie("token", resToken.data.token, 86400 * 7);
     },
     {
-      onSuccess: () => {
-        router.push('/dashboard')
+      onSuccess: async () => {
+        const resProfile = await userApi.getProfile();
+        dispatch(changeAuthenticate(true));
+        dispatch(setUser(resProfile.data));
+        setIsLoading(false);
+        router.push("/dashboard");
       },
-      onError: (err) => {
-        messageApi.error(err?.message ?? 'Login error')
+      onError: (err: Error) => {
+        setIsLoading(false);
+        messageApi.error("Login error");
       },
     }
-  )
+  );
   return (
     <>
       {contextHolder}
       <Spin spinning={isLoading}>
-        <div className={styles['wrapper-login']}>
-          <header className={styles['header']}>Sign In</header>
+        <div className={styles["wrapper-login"]}>
+          <header className={styles["header"]}>Sign In</header>
           <Form
             layout="vertical"
             name="basic"
@@ -51,7 +63,7 @@ const SignInForm: React.FC = () => {
               label="Username"
               name="username"
               rules={[
-                { required: true, message: 'Please input your username!' },
+                { required: true, message: "Please input your username!" },
               ]}
             >
               <Input />
@@ -61,7 +73,7 @@ const SignInForm: React.FC = () => {
               label="Password"
               name="password"
               rules={[
-                { required: true, message: 'Please input your password!' },
+                { required: true, message: "Please input your password!" },
               ]}
             >
               <Input.Password />
@@ -80,7 +92,7 @@ const SignInForm: React.FC = () => {
         </div>
       </Spin>
     </>
-  )
-}
+  );
+};
 
-export default SignInForm
+export default SignInForm;
