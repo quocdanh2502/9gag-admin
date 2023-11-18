@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { RootState } from "@/redux/store";
 import { User } from "@/models/user";
 
 type UserState = User;
@@ -8,10 +7,12 @@ const initialState: UserState = {
   username: "",
   displayName: "",
   avatarUrl: "",
+  coverImgUrl: "",
   id: 0,
   country: "",
   created: "",
   about: "",
+  isPrivate: false,
 };
 
 export const userSlice = createSlice({
@@ -30,7 +31,5 @@ export const userSlice = createSlice({
 const userReducer = userSlice.reducer;
 
 export const { setUser } = userSlice.actions;
-
-export const changeState = (state: RootState) => state.switch.mode;
 
 export default userReducer;

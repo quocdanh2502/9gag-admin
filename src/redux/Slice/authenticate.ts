@@ -23,6 +23,4 @@ const authenticateReducer = authenticateSlice.reducer;
 
 export const { changeAuthenticate } = authenticateSlice.actions;
 
-export const changeState = (state: RootState) => state.switch.mode;
-
 export default authenticateReducer;
