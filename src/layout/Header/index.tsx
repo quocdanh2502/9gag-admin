@@ -65,7 +65,11 @@ const AppHeader: React.FC = () => {
         background: mode === "dark" ? "#001529" : colorBgContainer,
         display: "flex",
         justifyContent: "flex-end",
-        paddingRight: 24,
+        position: "fixed",
+        top: 0,
+        zIndex: 1,
+        width: "100%",
+        alignItems: "center",
       }}
     >
       <Flex align="center" gap={16}>

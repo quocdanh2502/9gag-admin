@@ -27,6 +27,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-highlight-words": "^0.16.7",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "typescript": "latest"

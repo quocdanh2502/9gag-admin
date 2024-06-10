@@ -1,21 +1,29 @@
 import axiosClient from "@/services/axiosClient";
-import { Avatar, User } from "@/models/user";
+import { AllUsers, Avatar, User } from "@/models/user";
 import { Token } from "@/models/auth";
 
 interface UploadProps {
   file: File;
 }
 
+interface AllUsersProps {
+  page: number;
+  size: number;
+  search: string;
+}
+
 const endpoint = {
   user: "user",
   upload: "upload",
   profile: "user/profile",
+  all: "user/all",
 };
 
 const userApi = {
   getProfile() {
     return axiosClient.get<User>(endpoint.user);
   },
+
   postAvatar(params: UploadProps) {
     const formData = new FormData();
     formData.append("file", params.file);
@@ -25,9 +33,13 @@ const userApi = {
       },
     });
   },
+
   updateUser(params: User) {
-    console.log(params);
     return axiosClient.put<Token>(endpoint.profile, params);
+  },
+
+  getAllUsers(params: AllUsersProps) {
+    return axiosClient.get<AllUsers>(endpoint.all, { params });
   },
 };
 

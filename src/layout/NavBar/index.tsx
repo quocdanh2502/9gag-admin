@@ -11,6 +11,7 @@ import { Layout, Menu } from "antd";
 
 import { useAppSelector } from "@/hooks/redux-toolkit";
 import { KEY_NAVBAR } from "@/config/constant";
+import styles from "./NavBar.module.scss";
 
 const { Sider } = Layout;
 
@@ -50,7 +51,17 @@ const AppNavBar: React.FC = () => {
       theme={mode === "dark" ? "dark" : "light"}
       collapsible
       collapsed={collapsed}
+      trigger={null}
       onCollapse={(value) => setCollapsed(value)}
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        bottom: 0,
+        zIndex: 9999,
+      }}
     >
       <div className="demo-logo-vertical" />
       <Menu

@@ -79,11 +79,8 @@ const Profile: React.FC = () => {
       about: values.about,
     };
     const resToken = await userApi.updateUser(data);
-    console.log(resToken);
     deleteCookie("token");
     setCookie("token", resToken.data.token, 86400 * 7);
-    const resUser = await userApi.getProfile();
-    console.log(resUser.data);
   };
   return (
     <Row gutter={[8, 16]} className={styles["full-height"]}>

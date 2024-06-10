@@ -26,12 +26,12 @@ const DefaultLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   return isAuthenticated ? (
     <Layout>
-      <AppNavBar />
-      <Layout style={{ minHeight: "100vh" }}>
-        <AppHeader />
+      <AppHeader />
+      <Layout style={{ minHeight: "100vh", marginLeft: 200 }}>
+        <AppNavBar />
         <Content
           style={{
-            margin: "24px 16px",
+            margin: "88px 16px 24px",
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,

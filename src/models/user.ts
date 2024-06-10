@@ -14,3 +14,9 @@ export interface Avatar {
   url: string;
   type: string;
 }
+
+export interface AllUsers {
+  size: number;
+  number: number;
+  content: User[];
+}
