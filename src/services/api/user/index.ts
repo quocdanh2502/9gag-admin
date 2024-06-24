@@ -16,6 +16,8 @@ const endpoint = {
   user: "user",
   upload: "upload",
   profile: "user/profile",
+  block: "user/block",
+  unblock: "user/unblock",
   all: "user/all",
 };
 
@@ -36,6 +38,12 @@ const userApi = {
 
   updateUser(params: User) {
     return axiosClient.put<Token>(endpoint.profile, params);
+  },
+  blockUser(params: number) {
+    return axiosClient.put<Token>(endpoint.block+`/${params}`);
+  },
+  unblockUser(params: number) {
+    return axiosClient.put<Token>(endpoint.unblock+`/${params}`);
   },
 
   getAllUsers(params: AllUsersProps) {

@@ -1,3 +1,4 @@
+
 export interface User {
   id: number;
   username: string;
@@ -5,6 +6,7 @@ export interface User {
   coverImgUrl: string;
   displayName: string;
   country: string;
+  blocked: boolean;
   created: string;
   about: string;
   isPrivate: boolean;
@@ -19,4 +21,5 @@ export interface AllUsers {
   size: number;
   number: number;
   content: User[];
+  totalPages: number;
 }

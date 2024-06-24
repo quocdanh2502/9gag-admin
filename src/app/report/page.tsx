@@ -20,7 +20,7 @@ import { KEY_NAVBAR } from "@/config/constant";
 import { User } from "@/models/user";
 import { useQuery } from "@/hooks/swr";
 import userApi from "@/services/api/user";
-import styles from "./Use.module.scss";
+import styles from "./Report.module.scss";
 
 const { Search } = Input;
 
