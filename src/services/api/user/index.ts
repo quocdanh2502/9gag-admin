@@ -63,7 +63,7 @@ const userApi = {
     return axiosClient.put<Token>(endpoint.deleteAdmin + `/${params}`);
   },
   addAdmin(params: FieldType) {
-    return axiosClient.post<Token>(endpoint.addAdmin, { params });
+    return axiosClient.post<Token>(endpoint.addAdmin,  params );
   },
 };
 

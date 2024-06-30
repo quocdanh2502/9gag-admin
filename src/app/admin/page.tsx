@@ -287,13 +287,6 @@ const Admin: React.FC = () => {
             ]}>
             <Input />
           </Form.Item>
-          <Form.Item<FieldType>
-            label="Country"
-            name="country"
-           >
-            <Input />
-          </Form.Item>
-
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Submit
