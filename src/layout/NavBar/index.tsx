@@ -30,7 +30,7 @@ const AppNavBar: React.FC = () => {
       key: KEY_NAVBAR.dashboard.key,
       icon: <DashboardOutlined style={{ fontSize: "18px" }} />,
       label: KEY_NAVBAR.dashboard.label,
-      onClick: () => handleNavigate("/dashboard"),
+      onClick: () => handleNavigate("/admin"),
     },
     {
       key: KEY_NAVBAR.users.key,
@@ -39,10 +39,10 @@ const AppNavBar: React.FC = () => {
       onClick: () => handleNavigate("/users"),
     },
     {
-      key: KEY_NAVBAR.root.key,
+      key: KEY_NAVBAR.reports.key,
       icon: <TeamOutlined style={{ fontSize: "18px" }} />,
-      label: KEY_NAVBAR.root.label,
-      onClick: () => handleNavigate("/root"),
+      label: KEY_NAVBAR.reports.label,
+      onClick: () => handleNavigate("/reports"),
     },
   ];
 
@@ -61,8 +61,7 @@ const AppNavBar: React.FC = () => {
         top: 0,
         bottom: 0,
         zIndex: 9999,
-      }}
-    >
+      }}>
       <div className="demo-logo-vertical" />
       <Menu
         theme={mode === "dark" ? "dark" : "light"}

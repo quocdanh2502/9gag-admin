@@ -1,15 +1,15 @@
 export const KEY_NAVBAR = {
   dashboard: {
-    label: "Dashboard",
-    key: "dashboard",
+    label: "Admin",
+    key: "admin",
   },
   users: {
     label: "Users",
     key: "users",
   },
-  root: {
-    label: "Root",
-    key: "root",
+  reports: {
+    label: "Reports",
+    key: "reports",
   },
 };
 

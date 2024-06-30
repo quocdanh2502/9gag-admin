@@ -83,20 +83,11 @@ const Users: React.FC = () => {
       dataIndex: "displayName",
       key: "action",
       render: (value: any, record: User, index: any) => {
-        return record.blocked ? (
+        return (
           <Button
             type="primary"
             ghost
-            onClick={() => handleActionBlock(record.id, "unblock")}
-          >
-            Unblock
-          </Button>
-        ) : (
-          <Button
-            type="primary"
-            ghost
-            onClick={() => handleActionBlock(record.id, "block")}
-          >
+            onClick={() => handleActionBlock(record.id, "block")}>
             Block
           </Button>
         );

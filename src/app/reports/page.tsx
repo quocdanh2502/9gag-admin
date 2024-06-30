@@ -37,7 +37,7 @@ const getRandomuserParams = (params: TableParams) => ({
   ...params,
 });
 
-const Users: React.FC = () => {
+const Reports: React.FC = () => {
   const dispatch = useAppDispatch();
   const [api, contextHolder] = notification.useNotification();
   const [totalPages, setTotalPages] = useState<number>(0);
@@ -83,21 +83,12 @@ const Users: React.FC = () => {
       dataIndex: "displayName",
       key: "action",
       render: (value: any, record: User, index: any) => {
-        return record.blocked ? (
+        return (
           <Button
             type="primary"
             ghost
-            onClick={() => handleActionBlock(record.id, "unblock")}
-          >
+            onClick={() => handleActionBlock(record.id, "unblock")}>
             Unblock
-          </Button>
-        ) : (
-          <Button
-            type="primary"
-            ghost
-            onClick={() => handleActionBlock(record.id, "block")}
-          >
-            Block
           </Button>
         );
       },
@@ -107,12 +98,12 @@ const Users: React.FC = () => {
   const handleActionBlock = async (id: number, type: string) => {
     if (type === "block") {
       if (window.confirm("Are you sure you want to block this user?")) {
-        const data = await userApi.blockUser(id);
+        const data = await userApi.unblockUser(id);
         console.log(data);
         if (data.status === 204) {
           api["success"]({
             message: "SUCCESS",
-            description: "Blocked user successfully",
+            description: "Unblocked user successfully",
           });
         }
       }
@@ -130,18 +121,20 @@ const Users: React.FC = () => {
     }
   };
 
-  const { data, error, isLoading, mutate } = useQuery("get-all-user", () =>
-    userApi.getAllUsers({ page: 0, size: 20, search: "" })
+  const { data, error, isLoading, mutate } = useQuery(
+    "get-list-user-suspend",
+    () => userApi.getListUserSuspend({ page: 0, size: 20, search: "" })
   );
 
   useEffect(() => {
     if (data) {
       setTotalPages(data?.data.totalPages);
     }
+    console.log(data);
   }, [data]);
 
   useEffect(() => {
-    dispatch(selectKey(KEY_NAVBAR.users.key));
+    dispatch(selectKey(KEY_NAVBAR.reports.key));
   }, [dispatch]);
 
   const handleTableChange = (
@@ -203,4 +196,4 @@ const Users: React.FC = () => {
   );
 };
 
-export default Users;
+export default Reports;

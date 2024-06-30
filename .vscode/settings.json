@@ -3,5 +3,6 @@
         "antd",
         "NEXTAUTH",
         "Sider"
-    ]
+    ],
+    "prettier.bracketSameLine": true
 }

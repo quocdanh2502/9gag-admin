@@ -1,4 +1,3 @@
-
 export interface User {
   id: number;
   username: string;
@@ -23,3 +22,10 @@ export interface AllUsers {
   content: User[];
   totalPages: number;
 }
+
+export type FieldType = {
+  username?: string;
+  password?: string;
+  displayName?: string;
+  country?: string;
+};

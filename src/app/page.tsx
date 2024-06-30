@@ -17,18 +17,20 @@ const SignIn: React.FC = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
+      router.push("/admin");
     }
   }, [isAuthenticated, router]);
 
   return (
     <Layout
-      style={{ display: "flex", flexDirection: "row", backgroundColor: "#fff" }}
-    >
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        backgroundColor: "#fff",
+      }}>
       <Content
         style={{ width: "50%", height: "100vh" }}
-        className={styles["bg"]}
-      ></Content>
+        className={styles["bg"]}></Content>
       <Content
         className={styles["logo"]}
         style={{
@@ -39,8 +41,7 @@ const SignIn: React.FC = () => {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#f5f5f5",
-        }}
-      >
+        }}>
         <FormLogin />
       </Content>
     </Layout>

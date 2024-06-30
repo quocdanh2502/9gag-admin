@@ -1,0 +1,43 @@
+.full-height {
+  height: 100% !important;
+}
+
+.col {
+  display: flex !important;
+  justify-content: center;
+}
+
+.col-profile {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.col-profile-end {
+  display: flex !important;
+  justify-content: flex-end;
+}
+
+.col-profile-align {
+  align-items: center;
+}
+
+.user-name {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: bold;
+  color: #232d42;
+}
+
+.role {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #8a92a6;
+}
+
+.divider {
+  border-inline-start: 2px solid rgba(5, 5, 5, 0.06) !important;
+}
+
