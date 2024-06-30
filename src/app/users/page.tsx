@@ -71,14 +71,6 @@ const Users: React.FC = () => {
       key: "country",
     },
     {
-      title: "Status",
-      dataIndex: "blocked",
-      key: "status",
-      render: (value: any, record: User, index: any) => {
-        return !value ? "Not blocked" : "Blocked";
-      },
-    },
-    {
       title: "Action",
       dataIndex: "displayName",
       key: "action",

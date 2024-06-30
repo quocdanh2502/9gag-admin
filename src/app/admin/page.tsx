@@ -114,14 +114,6 @@ const Admin: React.FC = () => {
       key: "country",
     },
     {
-      title: "Status",
-      dataIndex: "blocked",
-      key: "status",
-      render: (value: any, record: User, index: any) => {
-        return !value ? "Not blocked" : "Blocked";
-      },
-    },
-    {
       title: "Action",
       dataIndex: "displayName",
       key: "action",
@@ -298,7 +290,7 @@ const Admin: React.FC = () => {
           <Form.Item<FieldType>
             label="Country"
             name="country"
-            rules={[{ required: true, message: "Please input your country!" }]}>
+           >
             <Input />
           </Form.Item>
 

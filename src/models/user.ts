@@ -24,6 +24,7 @@ export interface AllUsers {
 }
 
 export type FieldType = {
+  [x: string]: any;
   username?: string;
   password?: string;
   displayName?: string;
